@@ -15,6 +15,12 @@ Este proyecto es una aplicación full stack que utiliza React para el frontend, 
 
 ### Paso 1: Crear el contenedor y la base de datos
 
+0.**Descargar una imagen de docker con postgres:**
+
+   ```bash
+   docker pull postgres
+   ```
+
 1. **Crear el contenedor de Postgres:**
 
    ```bash
@@ -43,11 +49,11 @@ Este proyecto es una aplicación full stack que utiliza React para el frontend, 
 
 ### Paso 2: Configurar y ejecutar el backend
 
-1. **Clonar el repositorio del backend y navegar al directorio del proyecto:**
+1. **Clonar el repositorio del  y navegar al directorio del proyecto:**
 
    ```bash
-   git clone https://github.com/tu-usuario/tu-repositorio-backend.git
-   cd tu-repositorio-backend
+   git clone git@github.com:JoelTeoGom/SCE-Practica-FullStack.git
+   cd SCE-BackEnd-Definitiu
    ```
 
 2. **Crear el archivo `.env` en la raíz del proyecto con el siguiente contenido:**
@@ -86,29 +92,52 @@ Este proyecto es una aplicación full stack que utiliza React para el frontend, 
    ```bash
    npm run migration:run
    ```
+   También disponemos de dos comandos opcionales para generar y revertir las migraciones:
+   ```bash
+   npm run migration:generate
+   ```
+   ```bash
+   npm run migration:revert
+   ```
 
 ### Paso 3: Configurar y ejecutar el frontend
 
-1. **Clonar el repositorio del frontend y navegar al directorio del proyecto:**
+1. **Navegar al directorio del frontend:**
 
    ```bash
-   git clone https://github.com/tu-usuario/tu-repositorio-frontend.git
-   cd tu-repositorio-frontend
+  
+   cd SCE-FrontEnd-Definitiu
    ```
 
-2. **Instalar las dependencias del proyecto:**
+2. **Crear el archivo `.env` en la raíz del proyecto con el siguiente contenido:**
+
+   ```env
+   PORT=4000
+   ```
+
+3. **Instalar las dependencias del proyecto:**
 
    ```bash
    npm install
    ```
 
-3. **Ejecutar el frontend:**
+4. **Ejecutar el frontend:**
 
    ```bash
    npm start
    ```
 
    El frontend correrá en el puerto 4000.
+
+5. **Descripción del componente Navbar:**
+
+   Este proyecto es una aplicación web que utiliza una barra de navegación (Navbar) para facilitar el acceso a diferentes secciones de la tienda en línea de productos de boxeo. Esta barra de navegación está creada con React y la biblioteca de componentes de Material-UI. Contiene el componente `Navbar` que es responsable de la barra de navegación de la aplicación.
+
+   Enlaces:
+   - **Logo de boxeador**: Lleva a la página de productos (`/products`).
+   - **Ruedecita**: Lleva a la página del historial de pedidos (`/order-history`).
+   - **Carrito**: Lleva a la página del carrito de compras (`/cart`).
+   - **Logout**: Borra las cookies de sesión haciendo un set-cookies age: 0 en el backend y redirige a la página de inicio de sesión.
 
 ### Paso 4: Configurar Stripe
 
@@ -140,22 +169,51 @@ Este proyecto es una aplicación full stack que utiliza React para el frontend, 
    stripe listen --forward-to localhost:3000/api/stripe/process-checkout
    ```
 
+4. **Acciones**
+
+   Al hacer clic en el botón de checkout en el carrito, se redirige a la página de Stripe donde se pueden tomar dos acciones:
+
+   - **Cancelar**: Si el usuario cancela el pago, será redirigido a una página de cancelación con un botón que lo llevará de vuelta al carrito.
+   - **Completar el pago**: Si el usuario completa el pago, será redirigido a una página de éxito. En esta página, habrá un botón que redirigirá de vuelta al carrito. En caso de que el pago sea aceptado, el carrito se vaciará en el backend y se generará una orden.
+
 ### Paso 5: Insertar datos iniciales
 
 1. **Script para insertar datos:**
 
    Hay un script en el backend llamado `seed.sql` ubicado en la carpeta `sql` (`/sql/seed.sql`). Este script inserta 20 productos en la base de datos. Puedes ejecutar este script con la siguiente comanda:
 
-   ```bash
-   npm run seed
+   ```sql
+   INSERT INTO products (name, description, image, price, brand, type, stock, stripePriceId) VALUES
+   ('Bota Blanca', 'Bota blanca de alta calidad', 'bota1.jpg', 120.00, 'Venum', 'Botas', 10, 'price_1PQ9E1DA0KQHbCtDm0c12nmM'),
+   ('Bota Negra', 'Bota negra de alta calidad', 'bota2.jpg', 130.00, 'Nike', 'Botas', 15, 'price_1PQ9GSDA0KQHbCtDGTU7Pzyl'),
+   ('Bota Azul', 'Bota azul de alta calidad', 'bota3.jpg', 110.00, 'Everlast', 'Botas', 8, 'price_1PQ9GqDA0KQHbCtDt9avesJ3'),
+   ('Bota Roja', 'Bota roja de alta calidad', 'bota4.jpg', 125.00, 'Venum', 'Botas', 12, 'price_1PQ9HcDA0KQHbCtDkldtduXK'),
+   ('Casc Blau', 'Casc blau de alta protecció', 'casc1.jpg', 75.00, 'Leone', 'Cascs', 20, 'price_1PQ9I5DA0KQHbCtDAjpLM8d7'),
+   ('Casc Negre', 'Casc negre de alta protecció', 'casc2.jpg', 80.00, 'Leone', 'Cascs', 18, 'price_1PQ9JQDA0KQHbCtDXsEz9E6i'),
+   ('Casc Vermell', 'Casc vermell de alta protecció', 'casc3.jpg', 78.00, 'Leone', 'Cascs', 22, 'price_1PQ9JsDA0KQHbCtDRK6nQo2y'),
+   ('Casc Verd', 'Casc verd de alta protecció', 'casc4.jpg', 85.00, 'Venum', 'Cascs', 16, 'price_1PQ9KIDA0KQHbCtDVNIYkrda'),
+   ('Guants Negre', 'Guants negres de boxa', 'guants1.jpg', 60.00, 'Everlast', 'Guants', 25, 'price_1PQ9KzDA0KQHbCtDwsqHnzM5'),
+   ('Guants Blanc i Negre', 'Guants blanc i negre de boxa', 'guants2.jpg', 65.00, 'Leone', 'Guants', 30, 'price_1PQ9LgDA0KQHbCtDu60gGgY1'),
+   ('Guants Negre i Groc', 'Guants negres i grocs de boxa', 'guants3.jpg', 70.00, 'Evo', 'Guants', 20, 'price_1PQ9M5DA0KQHbCtDMAZsScZd'),
+   ('Guants Negre i Blanc', 'Guants negres i blancs de boxa', 'guants4.jpg', 68.00, 'Leone', 'Guants', 25, 'price_1PQ9MdDA0KQHbCtDM8qPYkAm'),
+   ('Mano Negre i Blanc', 'Mano negre i blanc de boxa', 'mano1.jpg', 50.00, 'Langray', 'Mano', 30, 'price_1PQ9N1DA0KQHbCtDmnWn2XBc'),
+   ('Mano Negre i Groc', 'Mano negre i groc de boxa', 'mano2.jpg', 55.00, 'Everlast', 'Mano', 28, 'price_1PQ9NMDA0KQHbCtDOQzTFR2e'),
+   ('Mano Vermell i Negre', 'Mano vermell i negre de boxa', 'mano3.jpg', 53.00, 'Everlast', 'Mano', 26, 'price_1PQ9NzDA0KQHbCtD4nqyHrhT'),
+   ('Mano Marró', 'Mano marró de boxa', 'mano4.jpg', 60.00, 'Everlast', 'Mano', 24, 'price_1PQ9OZDA0KQHbCtD6bRyWanS'),
+   ('Sac Vermell', 'Sac vermell de boxa', 'sac1.jpg', 90.00, 'Everlast', 'Sac', 15, 'price_1PQ9PKDA0KQHbCtD1FgjXhtj'),
+   ('Sac Negre i Groc', 'Sac negre i groc de boxa', 'sac2.jpg', 95.00, 'Leone', 'Sac', 12, 'price_1PQ9PfDA0KQHbCtD1PB17jdn'),
+   ('Sac Negre i Blanc', 'Sac negre i blanc de boxa', 'sac3.jpg', 100.00, 'Venum', 'Sac', 10, 'price_1PQ9PxDA0KQHbCtDlDE26UY7'),
+   ('Sac Negre i Lletra Blanca', 'Sac negre i lletra blanca de boxa', 'sac4.jpg', 110.00, 'Leone', 'Sac', 8, 'price_1PQ9QKDA0KQHbCtDQSRy7ITQ');
    ```
 
 ### Decisiones de Diseño
 
 1. **Uso de Docker**: Se utiliza Docker para crear y gestionar un entorno consistente y reproducible para la base de datos.
-2. **Integración de Stripe**: Se ha integrado Stripe para el procesamiento de pagos, incluyendo la configuración del webhook y la columna `stripePriceId` en la tabla de productos.
+2. **Integración de Stripe**: Se ha integrado Stripe para el procesamiento de pagos, incluyendo la configuración del webhook y la columna `stripePriceId` en la tabla de productos. También se usa el correo del propio user en la sesión de stripe para evitar que user escriba un correo aleatorio, ya que este junto a line_items nos servira para hacer el checkout.
 3. **Separación de responsabilidades**: Las migraciones, inserciones iniciales y configuración de Stripe se manejan a través de scripts separados para mantener una clara separación de responsabilidades.
 4. **Configuración del proyecto**: Se sigue una estructura clara para la configuración y ejecución del proyecto, asegurando que cada paso esté documentado y sea fácil de seguir.
+5. **Uso de UUID**: Se usa el UUID en todas las tablas tal y como se especifica en la práctica.
+6. **Email único**: Solo hay una cuenta por email. Una vez creada esa cuenta no se puede volver a usar el email a no ser que se elimine la fila en la tabla de users.
 
 ## Notas Adicionales
 
