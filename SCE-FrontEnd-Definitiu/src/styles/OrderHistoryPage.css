@@ -1,0 +1,27 @@
+/* OrderHistoryPage.css */
+.order-history-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .order-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .order-card h2 {
+    margin: 0 0 10px 0;
+  }
+  
+  .order-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .order-card li {
+    margin: 5px 0;
+  }
+  

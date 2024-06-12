@@ -1,0 +1,34 @@
+/* src/styles/ProductDetailPage.css */
+.stock-available {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .stock-unavailable {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .product-detail-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .product-detail-page img {
+    max-width: 300px;
+    margin-bottom: 16px;
+  }
+  
+  .product-detail-page button {
+    margin-top: 16px;
+  }
+
+  .product-detail-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    flex-direction: column;
+    text-align: center; /* Afegeix aquesta línia per centrar el text */
+  }

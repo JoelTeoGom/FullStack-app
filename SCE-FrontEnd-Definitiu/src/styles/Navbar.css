@@ -1,0 +1,31 @@
+    .navbar-logo {
+        height: 100%; /* Ajusta aquest valor segons la teva necessitat */
+        width: 75px; /* Ajusta aquest valor segons la teva necessitat */
+    }
+
+  .navbar-title {
+    font-weight: bold; /* Fa que el text estigui en negreta */
+    margin-left: 20px; /* Mou el text 20 píxels a la dreta */
+  }
+
+  .navbar-cart {
+    width: 50px;
+    height: 50px;
+    margin-right: 95px;
+    margin-bottom: -10px;
+  }
+
+  .navbar-cart:hover {
+    filter: brightness(0) invert(1);
+  }
+
+  .navbar-history {
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+    margin-bottom: -10px;
+  }
+
+  .navbar-history:hover {
+    filter: brightness(0) invert(1);
+  }

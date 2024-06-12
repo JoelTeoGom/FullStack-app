@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./SCE-FrontEnd-Definitiu
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./SCE-FrontEnd-Definitiu:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    restart: unless-stopped
+
+  backend:
+    build: ./SCE-BackEnd
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./SCE-BackEnd:/usr/src/app
+      - /usr/src/app/node_modules
+    env_file:
+      - ./SCE-BackEnd/.env
+    environment:
+      - DB_HOST=postgres
+      - NODE_ENV=development
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=joel
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=boxing_ecommerce
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

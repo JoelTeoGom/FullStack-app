@@ -1,0 +1,66 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #282c34;
+  }
+  
+  .login-box {
+    background-color: white;
+    width: 15%;
+    padding: 40px; /* Increment de la mida de la caixa */
+    border-radius: 20px; /* Increment de la mida de la caixa */
+    margin-right: 20px;
+    text-align: center;
+  }
+  
+  .login-box h2 {
+    font-size: 24px; /* Increment de la grandària del títol */
+  }
+  
+  .login-box div {
+    margin-bottom: 10px;
+  }
+  
+  .login-box label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .login-box input {
+    width: calc(100% - 16px);
+    padding: 12px; /* Increment de la mida dels inputs */
+    font-size: 18px; /* Increment de la grandària del text dels inputs */
+    margin: 12px 0; /* Increment de l'espai vertical entre els inputs */
+  }
+  
+  .login-box button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .login-box button:hover {
+    background-color: #0056b3;
+  }
+  
+  .forgot-password-link {
+    color: #007bff;
+    cursor: pointer;
+    display: block; /* Per centrar el text */
+  }
+  
+  .forgot-password-link:hover {
+    text-decoration: underline;
+    color: #0056b3;
+  }
+  
+  
+  
+  
